@@ -1,21 +1,22 @@
 {
     "name":"sendgrid-api",
     "version":"0.0.0",
-    "author":"",
-    "location":"elpete/sendgrid-api#v0.0.0",
-    "homepage":"https://github.com/elpete/sendgrid-api",
-    "documentation":"https://github.com/elpete/sendgrid-api",
+    "author":"Ortus Solutions",
+    "location":"coldbox-modules/sendgrid-api#v0.0.0",
+    "homepage":"https://github.com/coldbox-modules/sendgrid-api",
+    "documentation":"https://github.com/coldbox-modules/sendgrid-api",
     "repository":{
         "type":"git",
-        "URL":"https://github.com/elpete/sendgrid-api"
+        "URL":"https://github.com/coldbox-modules/sendgrid-api"
     },
-    "bugs":"https://github.com/elpete/sendgrid-api/issues",
+    "bugs":"https://github.com/coldbox-modules/sendgrid-api/issues",
     "slug":"sendgrid-api",
     "shortDescription":"An API for interacting with SendGrid, including sending emails and receiving webhooks",
     "description":"An API for interacting with SendGrid, including sending emails and receiving webhooks",
     "type":"modules",
     "dependencies":{},
     "devDependencies":{
+        "coldbox": "^4.3.0",
         "testbox":"^2.4.0+80"
     },
     "installPaths":{
@@ -23,7 +24,7 @@
         "coldbox":"tests/resources/app/coldbox"
     },
     "scripts":{
-        "postVersion":"package set location='elpete/sendgrid-api#v`package version`'",
+        "postVersion":"package set location='coldbox-modules/sendgrid-api#v`package version`'",
         "onRelease":"publish",
         "postPublish":"!git push && !git push --tags"
     },
