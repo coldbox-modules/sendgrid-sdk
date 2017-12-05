@@ -20,9 +20,9 @@ component {
                 "onSendgridEventSpamreport",
                 "onSendgridEventUnsubscribe",
                 "onSendgridEventGroupUnsubscribe",
-                "onSendgridEventGroupResubscribe",
+                "onSendgridEventGroupResubscribe"
             ]
-        }
+        };
     }
 
 }
