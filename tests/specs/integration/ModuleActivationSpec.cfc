@@ -1,6 +1,7 @@
 component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
+
     function run() {
-        describe( "Sample Integration Specs", function() {
+        describe( "Module Activation", function() {
             it( "can run integration specs with the module activated", function() {
                 expect( getController().getModuleService().isModuleRegistered( "sendgrid-api" ) ).toBeTrue();
                 var event = execute( event = "Main.index", renderResults = true );
@@ -9,4 +10,5 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
             } );
         } );
     }
+
 }
