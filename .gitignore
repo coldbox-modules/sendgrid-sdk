@@ -1,5 +1,21 @@
-/testbox
-/tests/results
-/tests/resources/app/coldbox
-/node_modules
-/modules
+# IDE Stuff
+.settings
+settings.xml
+
+# Logs
+logs/*.log
+
+# Test Results
+tests/results/*
+
+# Secrets
+.env
+
+# Dependenncies
+coldbox/*
+testbox/*
+docbox/*
+artifacts/*
+apidocs/sendgrid-sdk-apidocs/*
+workbench/*
+build/*

@@ -3,10 +3,7 @@
     "openbrowser":"false",
     "web":{
         "http":{
-            "port":"49616"
+            "port":8511
         }
-    },
-    "app":{
-        "cfengine":"adobe@11"
     }
 }

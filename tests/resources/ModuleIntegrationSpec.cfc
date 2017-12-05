@@ -6,7 +6,7 @@ component extends="coldbox.system.testing.BaseTestCase" {
         getWireBox().autowire( this );
 
         getController().getModuleService()
-            .registerAndActivateModule( "sendgrid-api", "testingModuleRoot" );
+            .registerAndActivateModule( "sendgrid-sdk" );
     }
 
     /**
