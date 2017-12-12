@@ -1,6 +1,6 @@
 {
     "name":"Sendgrid SDK Builder",
-    "version":"1.3.0",
+    "version":"1.4.0",
     "slug":"sendgrid-sdk-shell",
     "private":false,
     "dependencies":{
