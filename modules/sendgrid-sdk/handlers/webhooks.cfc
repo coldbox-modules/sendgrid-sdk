@@ -59,16 +59,33 @@ component {
         return replace( eventName, "_", "", "ALL" );
     }
 
+    /**
+     * Checks if basic authentication was only partially configured.
+     *
+     * @returns True if the authentication credentials are only partially configured.
+     */
     private function isPartialAuthCredentials() {
         return ( structKeyExists( sendgridSettings, "username" ) && ! structKeyExists( sendgridSettings, "password" ) ) ||
              ( ! structKeyExists( sendgridSettings, "username" ) && structKeyExists( sendgridSettings, "password" ) );
     }
 
+    /**
+     * Checks if basic authentication is needed for the request.
+     *
+     * @returns True if the request needs authorization.
+     */
     private function needsAuth() {
         return structKeyExists( sendgridSettings, "username" ) ||
             structKeyExists( sendgridSettings, "password" );
     }
 
+    /**
+     * Checks if the basic authentication credentials provided are valid.
+     *
+     * @event The ColdBox Request Context
+     *
+     * @returns True if the authentication credentials are invalid.
+     */
     private function isInvalidAuthCredentials( event ) {
         var basicAuth = event.getHTTPBasicCredentials();
         return ( basicAuth.username != sendgridSettings.username ||
