@@ -15,6 +15,7 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
                 variables.interceptionExecutions = [];
 
                 prepareMock( getRequestContext() )
+                    .$( "getHTTPBasicCredentials", { "username" = "foo", "password" = "bar" } )
                     .$( "getHTTPContent" )
                     .$args( json = true )
                     .$results( deserializeJSON(
@@ -41,6 +42,24 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
                 ] );
 
                 expect( event.getRenderedContent() ).toBe( "" );
+            } );
+
+            it( "fails if basic auth credentials are configured in the application but not provided in the request", function() {
+                variables.interceptionExecutions = [];
+
+                prepareMock( getRequestContext() )
+                    .$( "getHTTPContent" )
+                    .$args( json = true )
+                    .$results( deserializeJSON(
+                        fileRead( expandPath( "/tests/resources/stubs/request-1.json" ) )
+                    ) );
+
+                expect( variables.interceptionExecutions ).toBeEmpty();
+                var event = execute( route = "/sendgrid/webhooks", renderResults = true );
+                var interceptionExecutionNames = arrayMap( variables.interceptionExecutions, function( execution ) {
+                    return execution.name;
+                } );
+                expect( interceptionExecutionNames ).toBe( [] );
             } );
         } );
     }

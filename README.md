@@ -26,3 +26,19 @@ correspond with:
 * `onSendgridEventGroupResubscribe` => `group_resubscribe`
 
 The `interceptData` is the data sent from Sendgrid.
+
+### Basic Authentication
+
+SendGrid supports basic authentication when calling your webhook.
+To set this up, provide a `username` and `password` in your `moduleSettings`:
+
+```
+moduleSettings = {
+    "sendgrid-sdk" = {
+        "username" = "foo",
+        "password" = "bar"
+    }
+};
+```
+
+Note: if you only a username or a password, `sendgrid-sdk` will return a 500 error.

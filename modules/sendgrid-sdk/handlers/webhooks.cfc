@@ -4,6 +4,11 @@
 component {
 
     /**
+     * SendGrid Module Settings
+     */
+    property name="sendgridSettings" inject="coldbox:moduleSettings:sendgrid-sdk";
+
+    /**
      * The ColdBox Interceptor Service
      */
     property name="interceptorService" inject="coldbox:interceptorService";
@@ -12,6 +17,15 @@ component {
      * Translate incoming webhooks to ColdBox interceptors
      */
     function handle( event, rc, prc ) {
+        if ( needsAuth() ) {
+            if ( isPartialAuthCredentials() ) {
+                return event.renderData( statusCode = 500, data = "Invalid auth configuration" );
+            }
+            if ( isInvalidAuthCredentials( event ) ) {
+                return event.renderData( statusCode = 401, data = "Invalid credentials" );
+            }
+        }
+
         var webhookEvents = event.getHTTPContent( json = true );
         for ( var webhookEvent in webhookEvents ) {
             interceptorService.processState(
@@ -20,7 +34,7 @@ component {
             );
         }
 
-        event.renderData( statusCode = 200, data = "" );
+        return event.renderData( statusCode = 200, data = "" );
     }
 
     /**
@@ -43,6 +57,22 @@ component {
      */
     private function normalizeEventName( eventName ) {
         return replace( eventName, "_", "", "ALL" );
+    }
+
+    private function isPartialAuthCredentials() {
+        return ( structKeyExists( sendgridSettings, "username" ) && ! structKeyExists( sendgridSettings, "password" ) ) ||
+             ( ! structKeyExists( sendgridSettings, "username" ) && structKeyExists( sendgridSettings, "password" ) );
+    }
+
+    private function needsAuth() {
+        return structKeyExists( sendgridSettings, "username" ) ||
+            structKeyExists( sendgridSettings, "password" );
+    }
+
+    private function isInvalidAuthCredentials( event ) {
+        var basicAuth = event.getHTTPBasicCredentials();
+        return ( basicAuth.username != sendgridSettings.username ||
+                basicAuth.password != sendgridSettings.password );
     }
 
 }

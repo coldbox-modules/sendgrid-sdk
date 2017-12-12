@@ -44,7 +44,11 @@ component{
 		};
 
 		// custom settings
-		settings = {
+		moduleSettings = {
+            "sendgrid-sdk" = {
+                "username" = "foo",
+                "password" = "bar"
+            }
         };
 
 		// Activate WireBox
