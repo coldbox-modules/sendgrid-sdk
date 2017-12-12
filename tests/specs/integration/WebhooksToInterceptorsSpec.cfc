@@ -40,8 +40,6 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
                     "onSendgridEventGroupUnsubscribe",
                     "onSendgridEventGroupResubscribe"
                 ] );
-
-                expect( event.getRenderedContent() ).toBe( "" );
             } );
 
             it( "fails if basic auth credentials are configured in the application but not provided in the request", function() {
