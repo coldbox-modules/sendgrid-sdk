@@ -34,7 +34,7 @@ component {
             );
         }
 
-        return event.renderData( statusCode = 200, data = "" );
+        return event.renderData( statusCode = 200, data = "Successfully caught the webhook" );
     }
 
     /**
