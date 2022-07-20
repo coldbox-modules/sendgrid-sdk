@@ -16,6 +16,7 @@ component{
 	rootPath = REReplaceNoCase( this.mappings[ "/tests" ], "tests(\\|/)", "" );
     this.mappings[ "/root" ]   = rootPath;
 	this.mappings[ "/sendgrid-sdk" ]   = rootPath;
+	this.mappings[ "/hyper" ]   = rootPath & "modules/hyper";
 	this.mappings[ "/testingModuleRoot" ] = listDeleteAt( rootPath, listLen( rootPath, '\/' ), "\/" );
     this.mappings[ "/app" ] = testsPath & "resources/app";
     this.mappings[ "/coldbox" ] = testsPath & "resources/app/coldbox";

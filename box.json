@@ -14,12 +14,15 @@
     "location": "forgeboxStorage",
     "shortDescription": "An API for interacting with SendGrid, including sending emails and receiving webhooks",
     "description": "An API for interacting with SendGrid, including sending emails and receiving webhooks",
-    "dependencies":{},
+    "dependencies":{
+        "hyper":"^3.6.2"
+    },
     "devDependencies":{
         "coldbox":"^6.0.0",
         "testbox":"^4.0.0"
     },
     "installPaths":{
+        "hyper":"modules/hyper/",
         "coldbox":"tests/resources/app/coldbox/",
         "testbox":"testbox/"
     },

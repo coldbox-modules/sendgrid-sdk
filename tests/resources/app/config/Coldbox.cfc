@@ -140,7 +140,8 @@ component {
 		moduleSettings = {
             "sendgrid-sdk" = {
                 "username" = "foo",
-                "password" = "bar"
+                "password" = "bar",
+				"emailValidationAPIKey" = "[YOUR API KEY HERE]"
             }
         };
 
