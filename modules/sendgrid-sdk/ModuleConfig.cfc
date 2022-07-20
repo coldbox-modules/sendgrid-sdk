@@ -6,10 +6,10 @@ component {
     this.entrypoint = "/sendgrid";
 
     function configure() {
-        routes = [ { pattern = "/webhooks", handler = "webhooks", action = "handle" } ];
+        routes = [ { pattern: "/webhooks", handler: "webhooks", action: "handle" } ];
 
         interceptorSettings = {
-            customInterceptionPoints = [
+            customInterceptionPoints: [
                 "onSendgridEventProcessed",
                 "onSendgridEventDropped",
                 "onSendgridEventDelivered",

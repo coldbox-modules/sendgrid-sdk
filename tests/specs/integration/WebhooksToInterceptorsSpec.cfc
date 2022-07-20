@@ -4,9 +4,7 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
 
     function beforeAll() {
         super.beforeAll();
-        interceptorService.registerInterceptor(
-            interceptorObject = this
-        );
+        interceptorService.registerInterceptor( interceptorObject = this );
     }
 
     function run() {
@@ -15,12 +13,10 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
                 variables.interceptionExecutions = [];
 
                 prepareMock( getRequestContext() )
-                    .$( "getHTTPBasicCredentials", { "username" = "foo", "password" = "bar" } )
+                    .$( "getHTTPBasicCredentials", { "username": "foo", "password": "bar" } )
                     .$( "getHTTPContent" )
                     .$args( json = true )
-                    .$results( deserializeJSON(
-                        fileRead( expandPath( "/tests/resources/stubs/request-1.json" ) )
-                    ) );
+                    .$results( deserializeJSON( fileRead( expandPath( "/tests/resources/stubs/request-1.json" ) ) ) );
 
                 expect( variables.interceptionExecutions ).toBeEmpty();
                 var event = execute( route = "/sendgrid/webhooks", renderResults = true );
@@ -48,9 +44,7 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
                 prepareMock( getRequestContext() )
                     .$( "getHTTPContent" )
                     .$args( json = true )
-                    .$results( deserializeJSON(
-                        fileRead( expandPath( "/tests/resources/stubs/request-1.json" ) )
-                    ) );
+                    .$results( deserializeJSON( fileRead( expandPath( "/tests/resources/stubs/request-1.json" ) ) ) );
 
                 expect( variables.interceptionExecutions ).toBeEmpty();
                 var event = execute( route = "/sendgrid/webhooks", renderResults = true );
@@ -62,71 +56,110 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
         } );
     }
 
-    function onSendgridEventProcessed( event, interceptData, buffer, rc, prc ) {
-        arrayAppend( variables.interceptionExecutions, {
-            name = "onSendgridEventProcessed",
-            payload = interceptData
-        } );
+    function onSendgridEventProcessed(
+        event,
+        interceptData,
+        buffer,
+        rc,
+        prc
+    ) {
+        arrayAppend( variables.interceptionExecutions, { name: "onSendgridEventProcessed", payload: interceptData } );
     }
-    function onSendgridEventDeferred( event, interceptData, buffer, rc, prc ) {
-        arrayAppend( variables.interceptionExecutions, {
-            name = "onSendgridEventDeferred",
-            payload = interceptData
-        } );
+    function onSendgridEventDeferred(
+        event,
+        interceptData,
+        buffer,
+        rc,
+        prc
+    ) {
+        arrayAppend( variables.interceptionExecutions, { name: "onSendgridEventDeferred", payload: interceptData } );
     }
-    function onSendgridEventDelivered( event, interceptData, buffer, rc, prc ) {
-        arrayAppend( variables.interceptionExecutions, {
-            name = "onSendgridEventDelivered",
-            payload = interceptData
-        } );
+    function onSendgridEventDelivered(
+        event,
+        interceptData,
+        buffer,
+        rc,
+        prc
+    ) {
+        arrayAppend( variables.interceptionExecutions, { name: "onSendgridEventDelivered", payload: interceptData } );
     }
-    function onSendgridEventOpen( event, interceptData, buffer, rc, prc ) {
-        arrayAppend( variables.interceptionExecutions, {
-            name = "onSendgridEventOpen",
-            payload = interceptData
-        } );
+    function onSendgridEventOpen(
+        event,
+        interceptData,
+        buffer,
+        rc,
+        prc
+    ) {
+        arrayAppend( variables.interceptionExecutions, { name: "onSendgridEventOpen", payload: interceptData } );
     }
-    function onSendgridEventClick( event, interceptData, buffer, rc, prc ) {
-        arrayAppend( variables.interceptionExecutions, {
-            name = "onSendgridEventClick",
-            payload = interceptData
-        } );
+    function onSendgridEventClick(
+        event,
+        interceptData,
+        buffer,
+        rc,
+        prc
+    ) {
+        arrayAppend( variables.interceptionExecutions, { name: "onSendgridEventClick", payload: interceptData } );
     }
-    function onSendgridEventBounce( event, interceptData, buffer, rc, prc ) {
-        arrayAppend( variables.interceptionExecutions, {
-            name = "onSendgridEventBounce",
-            payload = interceptData
-        } );
+    function onSendgridEventBounce(
+        event,
+        interceptData,
+        buffer,
+        rc,
+        prc
+    ) {
+        arrayAppend( variables.interceptionExecutions, { name: "onSendgridEventBounce", payload: interceptData } );
     }
-    function onSendgridEventDropped( event, interceptData, buffer, rc, prc ) {
-        arrayAppend( variables.interceptionExecutions, {
-            name = "onSendgridEventDropped",
-            payload = interceptData
-        } );
+    function onSendgridEventDropped(
+        event,
+        interceptData,
+        buffer,
+        rc,
+        prc
+    ) {
+        arrayAppend( variables.interceptionExecutions, { name: "onSendgridEventDropped", payload: interceptData } );
     }
-    function onSendgridEventSpamreport( event, interceptData, buffer, rc, prc ) {
-        arrayAppend( variables.interceptionExecutions, {
-            name = "onSendgridEventSpamreport",
-            payload = interceptData
-        } );
+    function onSendgridEventSpamreport(
+        event,
+        interceptData,
+        buffer,
+        rc,
+        prc
+    ) {
+        arrayAppend( variables.interceptionExecutions, { name: "onSendgridEventSpamreport", payload: interceptData } );
     }
-    function onSendgridEventUnsubscribe( event, interceptData, buffer, rc, prc ) {
-        arrayAppend( variables.interceptionExecutions, {
-            name = "onSendgridEventUnsubscribe",
-            payload = interceptData
-        } );
+    function onSendgridEventUnsubscribe(
+        event,
+        interceptData,
+        buffer,
+        rc,
+        prc
+    ) {
+        arrayAppend( variables.interceptionExecutions, { name: "onSendgridEventUnsubscribe", payload: interceptData } );
     }
-    function onSendgridEventGroupUnsubscribe( event, interceptData, buffer, rc, prc ) {
-        arrayAppend( variables.interceptionExecutions, {
-            name = "onSendgridEventGroupUnsubscribe",
-            payload = interceptData
-        } );
+    function onSendgridEventGroupUnsubscribe(
+        event,
+        interceptData,
+        buffer,
+        rc,
+        prc
+    ) {
+        arrayAppend(
+            variables.interceptionExecutions,
+            { name: "onSendgridEventGroupUnsubscribe", payload: interceptData }
+        );
     }
-    function onSendgridEventGroupResubscribe( event, interceptData, buffer, rc, prc ) {
-        arrayAppend( variables.interceptionExecutions, {
-            name = "onSendgridEventGroupResubscribe",
-            payload = interceptData
-        } );
+    function onSendgridEventGroupResubscribe(
+        event,
+        interceptData,
+        buffer,
+        rc,
+        prc
+    ) {
+        arrayAppend(
+            variables.interceptionExecutions,
+            { name: "onSendgridEventGroupResubscribe", payload: interceptData }
+        );
     }
 
 }

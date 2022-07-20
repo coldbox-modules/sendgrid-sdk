@@ -5,13 +5,12 @@ component extends="coldbox.system.testing.BaseTestCase" {
 
         getWireBox().autowire( this );
 
-        getController().getModuleService()
-            .registerAndActivateModule( "sendgrid-sdk" );
+        getController().getModuleService().registerAndActivateModule( "sendgrid-sdk" );
     }
 
     /**
-    * @beforeEach
-    */
+     * @beforeEach
+     */
     function setupIntegrationTest() {
         setup();
     }

@@ -29,10 +29,10 @@ component {
                 return event.renderData( statusCode = 500, data = "Invalid auth configuration" );
             }
             if ( isInvalidAuthCredentials( event ) ) {
-                log.info( "Invalid incoming credentials detected for SendGrid webhook endpoint", {
-                    "incomingCredentials": event.getHTTPBasicCredentials(),
-                    "sendgridSettings": sendgridSettings
-                } );
+                log.info(
+                    "Invalid incoming credentials detected for SendGrid webhook endpoint",
+                    { "incomingCredentials": event.getHTTPBasicCredentials(), "sendgridSettings": sendgridSettings }
+                );
                 return event.renderData( statusCode = 401, data = "Invalid credentials" );
             }
         }
@@ -41,10 +41,7 @@ component {
         log.debug( "Converting incoming webhook events to interception points", webhookEvents );
         for ( var webhookEvent in webhookEvents ) {
             log.debug( "Announcing #generateStateName( webhookEvent )# SendGrid event", webhookEvent );
-            interceptorService.processState(
-                generateStateName( webhookEvent ),
-                webhookEvent
-            );
+            interceptorService.processState( generateStateName( webhookEvent ), webhookEvent );
         }
 
         log.debug( "All events announced.  Returning 200 to SendGrid" );
@@ -79,8 +76,8 @@ component {
      * @returns True if the authentication credentials are only partially configured.
      */
     private function isPartialAuthCredentials() {
-        return ( structKeyExists( sendgridSettings, "username" ) && ! structKeyExists( sendgridSettings, "password" ) ) ||
-             ( ! structKeyExists( sendgridSettings, "username" ) && structKeyExists( sendgridSettings, "password" ) );
+        return ( structKeyExists( sendgridSettings, "username" ) && !structKeyExists( sendgridSettings, "password" ) ) ||
+        ( !structKeyExists( sendgridSettings, "username" ) && structKeyExists( sendgridSettings, "password" ) );
     }
 
     /**
@@ -90,7 +87,7 @@ component {
      */
     private function needsAuth() {
         return structKeyExists( sendgridSettings, "username" ) ||
-            structKeyExists( sendgridSettings, "password" );
+        structKeyExists( sendgridSettings, "password" );
     }
 
     /**
@@ -102,8 +99,10 @@ component {
      */
     private function isInvalidAuthCredentials( event ) {
         var basicAuth = event.getHTTPBasicCredentials();
-        return ( basicAuth.username != sendgridSettings.username ||
-                basicAuth.password != sendgridSettings.password );
+        return (
+            basicAuth.username != sendgridSettings.username ||
+            basicAuth.password != sendgridSettings.password
+        );
     }
 
 }

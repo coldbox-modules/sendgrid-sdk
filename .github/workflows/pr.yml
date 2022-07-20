@@ -1,0 +1,14 @@
+name: Pull Requests
+
+on:
+  push:
+    branches-ignore:
+      - "master"
+      - "development"
+  pull_request:
+    branches:
+      - development
+
+jobs:
+  tests:
+    uses: ./.github/workflows/tests.yml
