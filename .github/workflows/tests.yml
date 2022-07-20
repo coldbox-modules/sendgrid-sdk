@@ -49,7 +49,7 @@ jobs:
       - name: Run Tests
         run: |
           mkdir -p tests/results
-          box testbox run --verbose outputFile=tests/results/test-results outputFormats=json,antjunit
+          box testbox run runner=http://127.0.0.1:49619/tests/runner.cfm --verbose outputFile=tests/results/test-results outputFormats=json,antjunit
 
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v1
