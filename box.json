@@ -21,6 +21,6 @@
     "scripts":{
         "postVersion":"recipe workbench/bump.boxr",
         "format":"cfformat run modules/sendgrid-sdk/**/*.cfc,tests/resources/**/*.cfc,tests/specs/**/*.cfc --overwrite",
-        "install:2021":"cfpm install feed,zip"
+        "install:2021":"cfpm install document,feed,zip"
     }
 }
