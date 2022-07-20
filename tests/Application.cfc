@@ -11,12 +11,15 @@ component{
 	this.whiteSpaceManagement = "smart";
 
 	// any mappings go here, we create one that points to the root called test.
-	this.mappings[ "/tests" ] = getDirectoryFromPath( getCurrentTemplatePath() );
+	testsPath = getDirectoryFromPath( getCurrentTemplatePath() );
+	this.mappings[ "/tests" ] = testsPath;
 	rootPath = REReplaceNoCase( this.mappings[ "/tests" ], "tests(\\|/)", "" );
     this.mappings[ "/root" ]   = rootPath;
-    this.mappings[ "/app" ] = rootPath;
-    this.mappings[ "/coldbox" ] = rootPath & "coldbox";
-	this.mappings[ "/sendgrid-sdk" ]   = rootPath & "modules/sendgrid-sdk";
+	this.mappings[ "/sendgrid-sdk" ]   = rootPath;
+	this.mappings[ "/testingModuleRoot" ] = listDeleteAt( rootPath, listLen( rootPath, '\/' ), "\/" );
+    this.mappings[ "/app" ] = testsPath & "resources/app";
+    this.mappings[ "/coldbox" ] = testsPath & "resources/app/coldbox";
+    this.mappings[ "/testbox" ] = rootPath & "testbox";
 
 	// any orm definitions go here.
 

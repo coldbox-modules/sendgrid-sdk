@@ -52,7 +52,6 @@ jobs:
       - name: Setup Environment Variables For Build Process
         id: current_version
         run: |
-          cd modules/sendgrid-sdk
           echo "VERSION=`cat box.json | jq '.version' -r`" >> $GITHUB_ENV
           box package set version=@build.version@+@build.number@
           # main or snapshot
@@ -72,6 +71,4 @@ jobs:
       - name: Run Semantic Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          cd modules/sendgrid-sdk
-          box semantic-release
+        run: box semantic-release

@@ -1,26 +1,33 @@
 {
-    "name":"Sendgrid SDK Builder",
+    "name":"Sendgrid SDK",
+    "slug":"sendgrid-sdk",
     "version":"1.4.2",
-    "slug":"sendgrid-sdk-shell",
-    "private":false,
-    "dependencies":{
-        "coldbox":"^4.3.0",
-        "workbench":"git+https://github.com/Ortus-Solutions/unified-workbench.git"
+    "homepage": "https://github.com/coldbox-modules/sendgrid-sdk",
+    "documentation": "https://github.com/coldbox-modules/sendgrid-sdk",
+    "repository": {
+      "type": "git",
+      "URL": "https://github.com/coldbox-modules/sendgrid-sdk"
     },
+    "bugs": "https://github.com/coldbox-modules/sendgrid-sdk/issues",
+    "author": "Ortus Solutions",
+    "location": "forgeboxStorage",
+    "shortDescription": "An API for interacting with SendGrid, including sending emails and receiving webhooks",
+    "description": "An API for interacting with SendGrid, including sending emails and receiving webhooks",
+    "dependencies":{},
     "devDependencies":{
-        "testbox":"^2.5.0"
+        "coldbox":"^6.0.0",
+        "testbox":"^4.0.0"
     },
     "installPaths":{
-        "coldbox":"coldbox",
-        "testbox":"testbox/",
-        "workbench":"workbench"
+        "coldbox":"tests/resources/app/coldbox/",
+        "testbox":"testbox/"
     },
     "testbox":{
         "runner":"http://localhost:49616"
     },
     "scripts":{
-        "postVersion":"recipe workbench/bump.boxr",
         "format":"cfformat run modules/sendgrid-sdk/**/*.cfc,tests/resources/**/*.cfc,tests/specs/**/*.cfc --overwrite",
         "install:2021":"cfpm install document,feed,zip"
-    }
+    },
+    "ignore": ["**/.*", "test", "tests"]
 }
