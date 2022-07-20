@@ -4,16 +4,18 @@
     "slug":"sendgrid-sdk-shell",
     "private":false,
     "dependencies":{
-        "coldbox":"^4.3.0",
-        "workbench":"git+https://github.com/Ortus-Solutions/unified-workbench.git"
+        "coldbox":"^6.6.1+2",
+        "workbench":"git+https://github.com/Ortus-Solutions/unified-workbench.git",
+        "hyper":"^3.6.2"
     },
     "devDependencies":{
         "testbox":"^2.5.0"
     },
     "installPaths":{
-        "coldbox":"coldbox",
+        "coldbox":"coldbox/",
         "testbox":"testbox/",
-        "workbench":"workbench"
+        "workbench":"workbench/",
+        "hyper":"modules/hyper/"
     },
     "testbox":{
         "runner":"http://localhost:49616"

@@ -47,7 +47,8 @@ component{
 		moduleSettings = {
             "sendgrid-sdk" = {
                 "username" = "foo",
-                "password" = "bar"
+                "password" = "bar",
+				"emailValidationAPIKey" = "[YOUR API KEY HERE]"
             }
         };
 
@@ -77,10 +78,7 @@ component{
 		};
 
 		//Register interceptors as an array, we need order
-		interceptors = [
-			//SES
-			{ class="coldbox.system.interceptors.SES" }
-		];
+		interceptors = [];
     }
 
     function getSystemSetting( name, defaultValue ) {

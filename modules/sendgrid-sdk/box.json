@@ -12,18 +12,21 @@
   "bugs": "https://github.com/coldbox-modules/sendgrid-sdk/issues",
   "slug": "sendgrid-sdk",
   "shortDescription":
-    "An API for interacting with SendGrid, including sending emails and receiving webhooks",
+    "An API for interacting with SendGrid, including sending emails, validating email addresses, and receiving webhooks",
   "description":
-    "An API for interacting with SendGrid, including sending emails and receiving webhooks",
+    "An API for interacting with SendGrid, including sending emails, validating email addresses, and receiving webhooks",
   "type": "modules",
-  "dependencies": {},
+  "dependencies":{
+    "hyper":"^3.4.0"
+  },
   "devDependencies": {
-    "coldbox": "^4.3.0",
-    "testbox": "^2.4.0+80"
+    "testbox":"^4.5.0+5",
+    "coldbox":"^6.6.1+2"
   },
   "installPaths": {
     "testbox": "testbox",
-    "coldbox": "tests/resources/app/coldbox"
+    "coldbox": "tests/resources/app/coldbox",
+    "hyper":"modules/hyper/"
   },
   "scripts": {
     "postVersion":
