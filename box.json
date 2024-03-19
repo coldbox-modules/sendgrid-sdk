@@ -15,11 +15,11 @@
     "shortDescription":"An API for interacting with SendGrid, including sending emails and receiving webhooks",
     "description":"An API for interacting with SendGrid, including sending emails and receiving webhooks",
     "dependencies":{
-        "hyper":"^4.0.0"
+        "hyper":"^7.5.0"
     },
     "devDependencies":{
-        "coldbox":"^6.0.0",
-        "testbox":"^4.0.0"
+        "coldbox":"^7.0.0",
+        "testbox":"^5.0.0"
     },
     "installPaths":{
         "hyper":"modules/hyper/",
