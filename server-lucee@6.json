@@ -1,0 +1,24 @@
+{
+    "name":"sendgrid-sdk-lucee@6",
+    "app":{
+        "serverHomeDirectory":".engine/lucee6",
+        "cfengine":"lucee@6"
+    },
+    "web":{
+        "directoryBrowsing":true,
+        "http":{
+            "port":"60299"
+        },
+        "rewrites":{
+            "enable":"true"
+        },
+        "webroot":"./",
+        "aliases":{
+            "/moduleroot/sendgrid-sdk":"./"
+        }
+    },
+    "jvm":{
+        "heapSize":"1024"
+    },
+    "openBrowser":"false"
+}

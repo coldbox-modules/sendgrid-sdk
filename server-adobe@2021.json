@@ -1,0 +1,22 @@
+{
+    "force":true,
+    "openbrowser":"false",
+    "name": "sendgrid-sdk-adobe@2021",
+    "web":{
+        "directoryBrowsing":true,
+        "http":{
+            "port":"60299"
+        },
+        "rewrites":{
+            "enable":"true"
+        },
+        "webroot":"./",
+        "aliases":{
+            "/moduleroot/sendgrid-sdk":"./"
+        }
+    },
+    "app":{
+        "serverHomeDirectory":".engine/adobe2021",
+        "cfengine":"adobe@2021"
+    }
+}
