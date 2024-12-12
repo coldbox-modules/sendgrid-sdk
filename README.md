@@ -78,3 +78,9 @@ moduleSettings = {
 ```
 
 Note: if you only a username or a password, `sendgrid-sdk` will return a 500 error.
+
+## Systema requirements
+
+* [Boxlang](https://www.boxlang.io/)
+* Adobe 2021+
+* Lucee 5+
