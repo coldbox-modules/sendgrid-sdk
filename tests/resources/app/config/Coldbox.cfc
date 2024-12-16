@@ -3,7 +3,7 @@ component {
 	/**
 	 * Configure the ColdBox App For Production
 	 */
-	function configure() {
+	function configure(){
 		/**
 		 * --------------------------------------------------------------------------
 		 * ColdBox Directives
@@ -138,12 +138,12 @@ component {
 		 * }
 		 */
 		moduleSettings = {
-            "sendgrid-sdk" = {
-                "username" = "foo",
-                "password" = "bar",
-				"emailValidationAPIKey" = "[YOUR API KEY HERE]"
-            }
-        };
+			"sendgrid-sdk" : {
+				"username"              : "foo",
+				"password"              : "bar",
+				"emailValidationAPIKey" : "[YOUR API KEY HERE]"
+			}
+		};
 
 		/**
 		 * --------------------------------------------------------------------------
@@ -177,7 +177,7 @@ component {
 	/**
 	 * Development environment
 	 */
-	function development() {
+	function development(){
 		// coldbox.customErrorTemplate = "/coldbox/system/exceptions/BugReport.cfm"; // static bug reports
 		coldbox.customErrorTemplate = "/coldbox/system/exceptions/Whoops.cfm"; // interactive bug report
 	}

@@ -27,7 +27,7 @@
         "testbox":"testbox/"
     },
     "testbox":{
-        "runner":"http://localhost:49616"
+        "runner":"http://localhost:60299"
     },
     "scripts":{
         "format":"cfformat run modules/sendgrid-sdk/**/*.cfc,tests/resources/**/*.cfc,tests/specs/**/*.cfc --overwrite",

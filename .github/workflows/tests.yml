@@ -7,10 +7,17 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-20.04
+    continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
       matrix:
         cfengine: [ "lucee@5", "lucee@6", "adobe@2021", "adobe@2023" ]
+        coldboxVersion: [ "^6.0.0", "^7.0.0" ]
+        experimental: [ false ]
+        include:
+          - coldboxVersion: "be"
+            cfengine: "boxlang@1"
+            experimental: true
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -25,7 +32,7 @@ jobs:
         uses: Ortus-Solutions/setup-commandbox@main
 
       - name: Cache CommandBox Dependencies
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         if: ${{ true }}
         with:
           path: ~/.CommandBox/artifacts
@@ -35,47 +42,48 @@ jobs:
 
       - name: Install Test Harness Dependencies
         run: |
+          box package set dependencies.coldbox=${{ matrix.coldboxVersion }}
           box install
 
       - name: Start ${{ matrix.cfengine }} Server
         run: |
-          box server start cfengine=${{ matrix.cfengine }} port=49619 --noSaveSettings --debug
+          box server start serverConfigFile=server-${{ matrix.cfengine }}.json --noSaveSettings --debug
           # Install Adobe 2021 cfpm modules
           if [[ "${{ matrix.cfengine }}" == "adobe@2021" ]] ; then
             box run-script install:2021
           fi
-          curl http://127.0.0.1:49619
+          curl http://127.0.0.1:60299
 
       - name: Run Tests
         run: |
           mkdir -p tests/results
-          box testbox run runner=http://127.0.0.1:49619/tests/runner.cfm --verbose outputFile=tests/results/test-results outputFormats=json,antjunit
+          box testbox run runner=http://127.0.0.1:60299/tests/runner.cfm --verbose outputFile=tests/results/test-results outputFormats=json,antjunit
 
       - name: Publish Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v1
+        uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
-          files: tests/results/**/*.xml
+          junit_files: tests/results/**/*.xml
           check_name: "${{ matrix.cfengine }} Test Results"
 
       - name: Upload Test Results to Artifacts
         if: always()
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
-          name: test-results-${{ matrix.cfengine }}
+          name: test-results-${{ matrix.cfengine }}-${{ matrix.coldboxVersion }}
           path: |
             tests/results/**/*
 
       - name: Show Server Log On Failures
         if: ${{ failure() }}
         run: |
-          box server log
+          box server log serverConfigFile="server-${{ matrix.cfengine }}.json"
 
       - name: Upload Debug Logs To Artifacts
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
-          name: Failure Debugging Info - ${{ matrix.cfengine }}
+          name: Failure Debugging Info - ${{ matrix.cfengine }} - ${{ matrix.coldboxVersion }}
           path: |
             .engine/**/logs/*
             .engine/**/WEB-INF/cfusion/logs/*

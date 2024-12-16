@@ -27,7 +27,6 @@ component extends="tests.resources.ModuleIntegrationSpec" appMapping="/app" {
                 expect( res.json().result.source ).toInclude( "test source" );
             } );
             */
-
         } );
     }
 
