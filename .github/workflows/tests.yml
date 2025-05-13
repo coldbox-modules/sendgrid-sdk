@@ -24,15 +24,6 @@ jobs:
       - name: Setup CommandBox CLI
         uses: Ortus-Solutions/setup-commandbox@main
 
-      - name: Cache CommandBox Dependencies
-        uses: actions/cache@v1
-        if: ${{ true }}
-        with:
-          path: ~/.CommandBox/artifacts
-          key: ${{ runner.OS }}-commandbox-cache-${{ hashFiles( 'box.json' ) }}-${{ hashFiles( 'box.json' ) }}
-          restore-keys: |
-            ${{ runner.OS }}-commandbox-cache-${{ hashFiles( 'box.json' ) }}-${{ hashFiles( 'box.json' ) }}
-
       - name: Install Test Harness Dependencies
         run: |
           box install
