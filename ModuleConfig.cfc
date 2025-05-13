@@ -7,6 +7,10 @@ component {
     this.dependencies = [ "hyper" ];
 
     function configure() {
+        settings = {
+            "emailValidationAPIKey": getSystemSetting( "SENDGRID_SDK_EMAIL_VALIDATION_API_KEY", "" )
+        };
+
         routes = [ { pattern: "/webhooks", handler: "webhooks", action: "handle" } ];
 
         interceptorSettings = {

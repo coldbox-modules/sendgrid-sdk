@@ -16,13 +16,12 @@ Configure your SendGrid API key credentials in the `config/ColdBox.cfc` file.
 
 Note: SendGrid uses a Bearer API token header for authentication with their API.
 The SendGrid API Keys can have different permissions granted and email address
-validation is typically seperate from all other permission sets.
-
+validation is typically separate from all other permission sets.
 
 ```
 moduleSettings = {
     "sendgrid-sdk" = {
-        emailValidationAPIKey = ""
+        "emailValidationAPIKey" = getSystemSetting( "SENDGRID_SDK_EMAIL_VALIDATION_API_KEY", "" )
     }
 };
 ```
